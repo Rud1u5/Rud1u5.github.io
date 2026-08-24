@@ -4,6 +4,21 @@
 // ============================================================
 const WRITEUPS = [
   {
+    id: "cl-byp4ss3d",
+    title: "Byp4ss3d",
+    platform: "CyLab",
+    type: "challenge",
+    category: "web",
+    difficulty: "medium",
+    locked: false,
+    date: "2026-08-24",
+    release_date: "2025-10-01",
+    completed_date: "2026-08-24",
+    avatar: "/assets/icon/web.svg",
+    tags: ["burp-suite", "file-upload", "web-exploitation"],
+    desc: "Upload Filter Bypass / ID Card Verification."
+  },
+  {
     id: "cl-factcheck",
     title: "FactCheck",
     platform: "CyLab",
@@ -14,7 +29,7 @@ const WRITEUPS = [
     date: "2026-08-13",
     release_date: "2024-xx-xx",
     completed_date: "2026-08-12",
-    avatar: "/assets/icon/Hackthebox-Reversing.svg",
+    avatar: "/assets/icon/reversing.svg",
     tags: ["ELF", "radare2", "debugging", "little-endian"],
     desc: "Dynamic flag assembly in ELF binary; extracted via radare2 debugging and heap inspection."
   },
@@ -29,7 +44,7 @@ const WRITEUPS = [
     date: "2026-08-11",
     release_date: "2022-xx-xx",
     completed_date: "2026-08-10",
-    avatar: "/assets/icon/Hackthebox-Reversing.svg",
+    avatar: "/assets/icon/reversing.svg",
     tags: ["ELF", "x86-64", "radare2", "MD5"],
     desc: "Static reverse engineering of a stripped x86-64 ELF binary that dynamically reconstructs a hardcoded base string, derives an MD5 digest."
   },
@@ -44,7 +59,7 @@ const WRITEUPS = [
     date: "2026-07-23",
     release_date: "2024-02-16",
     completed_date: "2026-07-23",
-    avatar: "/assets/icon/Hackthebox-Reversing.svg",
+    avatar: "/assets/icon/reversing.svg",
     tags: ["ARM", "Unicorn Engine"],
     desc: "Automated solve of a 50-level timed ARM opcode challenge using Unicorn Engine emulation to compute register r0 within a timeout."
   },
