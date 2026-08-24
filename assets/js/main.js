@@ -43,7 +43,7 @@ function renderCard(m, linkPrefix = '') {
   }
 
   return `
-    <a class="machine-card" href="${href}"
+    <a class="machine-card card-${m.difficulty}" href="${href}"
        style="--diff-color: var(--${m.difficulty === 'easy' ? 'green' : m.difficulty === 'medium' ? 'orange' : 'red'})">
       <div class="card-top">
         ${m.avatar ? `<img src="${m.avatar}" class="machine-avatar-mini" alt="${m.title}" />` : ''}

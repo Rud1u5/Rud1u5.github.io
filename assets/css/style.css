@@ -525,12 +525,12 @@ body {
 }
 
 /* Aumentar el resplandor de las tarjetas HARD (Rojas) */
-.machine-card[style*="--red"]::before {
+.machine-card.card-hard::before {
   box-shadow: 0 0 18px var(--red), 0 0 10px var(--red);
 }
 
 /* Aumentar el resplandor de las tarjetas MEDIUM (Naranjas) */
-.machine-card[style*="--orange"]::before {
+.machine-card.card-medium::before {
   box-shadow: 0 0 16px var(--orange), 0 0 10px var(--orange);
 }
 
