@@ -1833,11 +1833,21 @@ body {
 }
 
 .writeup-body pre code {
-  background: none;
+  background: transparent !important;
   border: none;
-  padding: 0;
-  color: var(--green);
+  padding: 0 !important;
   font-size: 0.82em;
+}
+
+/* Evitar que highlight.js sobrescriba el fondo del contenedor pre */
+.hljs {
+  background: transparent !important;
+}
+
+/* Mantener el color verde hacker por defecto solo para bash/shell */
+.writeup-body pre code.language-bash,
+.writeup-body pre code.language-shell {
+  color: var(--green);
 }
 
 .writeup-body pre code .code-comment {
