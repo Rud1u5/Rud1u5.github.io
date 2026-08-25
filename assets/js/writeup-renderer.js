@@ -181,6 +181,8 @@
         formatCallouts(writeupBody);
         highlightComments(writeupBody);
         addCopyButtons(writeupBody);
+        renderMermaidDiagrams(writeupBody);
+        if (typeof hljs !== 'undefined') { hljs.highlightAll(); }
 
       } catch (err) {
         // ❌ FLAG INCORRECTA — shake + mensaje de error
@@ -214,6 +216,8 @@
           formatCallouts(writeupBody);
           highlightComments(writeupBody);
           addCopyButtons(writeupBody);
+          renderMermaidDiagrams(writeupBody);
+          if (typeof hljs !== 'undefined') { hljs.highlightAll(); }
         } else {
           throw new Error('La librería "marked" no se cargó.');
         }
@@ -299,5 +303,33 @@
         }
       }
     });
+  }
+
+  function renderMermaidDiagrams(container) {
+    if (typeof mermaid !== 'undefined') {
+      // 1. Configurar mermaid (tema oscuro)
+      mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+      
+      // 2. Buscar todos los bloques que marked generó como <code class="language-mermaid">
+      const mermaidBlocks = container.querySelectorAll('code.language-mermaid');
+      if (mermaidBlocks.length === 0) return;
+
+      mermaidBlocks.forEach((block) => {
+        const pre = block.parentElement;
+        // Solo si el padre directo es un <pre> (generado por marked.js)
+        if (pre && pre.tagName === 'PRE') {
+          const div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = block.textContent;
+          div.style.textAlign = 'center';
+          div.style.margin = '2rem 0';
+          // Reemplazar el <pre> por el <div> de mermaid
+          pre.parentNode.replaceChild(div, pre);
+        }
+      });
+
+      // 3. Renderizar todos los div.mermaid a SVG
+      mermaid.init(undefined, container.querySelectorAll('.mermaid'));
+    }
   }
 })();
