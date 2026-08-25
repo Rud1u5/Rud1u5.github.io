@@ -312,11 +312,25 @@ The full sequence of compromise, from initial network mapping to root shell acce
 
 ```mermaid
 graph TD
-    A[Initial Scanning] --> B[Foothold via CVE-2025-47812]
-    B --> C[Post-Exploitation & Hash Extraction]
-    C --> D[Password Cracking via Hashcat]
-    D --> E[Lateral Movement via SSH]
-    E --> F[Privilege Escalation via CVE-2025-4517]
-    F --> G[Root Shell Access]
-
+    A[Initial Scanning] --> B(Discover Vulnerable Service)
+    B --> C{Exploit CVE-2025-47812}
+    
+    C --> D[Establish Foothold]
+    
+    D --> E[(Post-Exploitation)]
+    E --> F[Internal Enumeration]
+    E --> G[Extract Password Hashes]
+    
+    G --> H[Crack Hashes via Hashcat]
+    
+    F --> I[Identify SSH Target]
+    H --> I
+    
+    I --> J[Lateral Movement via SSH]
+    
+    J --> U(((User Flag Retrieved)))
+    
+    U --> K{Exploit CVE-2025-4517}
+    
+    K --> L(((Root Flag Retrieved)))
 ```

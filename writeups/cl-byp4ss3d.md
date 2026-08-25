@@ -157,11 +157,15 @@ Accessing `http://amiable-citadel.picoctf.net:XXXXX/images/find.png` executed 
 
 ```mermaid
 graph TD
-    A[Analyze /upload.php & Upload Probing] --> B[Discover Incomplete Extension Whitelist]
-    B --> C[Attempt .txt upload: Rejected]
-    B --> D[Upload custom .htaccess: AddHandler application/x-httpd-php .png]
-    D --> E[Upload test.png: Confirm PHP RCE execution]
-    E --> F[Upload find.png: Enumerate directory tree and read flag]
-    F --> G[Extract Flag]
+    A[Analyze /upload.php] --> B{Upload Probing}
+    
+    B --> C[Rejected: .txt Attempt]
+    
+    B --> D[Discover Whitelist Flaw]
+    D --> E[Upload custom .htaccess]
+    E --> F[(Upload .png as PHP payload)]
+    
+    F --> G[Enumerate system via RCE]
+    G --> H(((Flag Retrieved)))
 ```
 

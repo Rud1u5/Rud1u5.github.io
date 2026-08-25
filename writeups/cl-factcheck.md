@@ -167,14 +167,25 @@ The output reveals the complete flag (without the final `}`, since the breakpoin
 ## 4. Solve Chain Summary
 ```mermaid
 graph TD
-    A[Static Triage: file / exiftool / strings] --> B[Disassemble main via radare2]
-    B --> C[Identify dynamic flag construction logic]
-    C --> D[Launch debugger: r2 -d ./bin]
-    D --> E[Run full analysis: aaaa]
-    E --> F[Locate runtime address of closing brace concatenation]
-    F --> G[Set breakpoint and execute until hit]
-    G --> H[Inspect std::string object at rbp-0x240]
-    H --> I[Extract heap pointer from first 8 bytes]
-    I --> J[Read flag with ps @ heap_address]
-    J --> K[Flag Retrieved]
+    A[file / exiftool] --> B(Identify: x64 ELF, Not stripped)
+    C[strings] --> D(Discover static flag prefix)
+    
+    B --> E{Disassemble main with radare2}
+    D --> E
+    
+    E --> F[Identify dynamic flag construction]
+    F --> G[Observe target variable: rbp-0x240]
+    
+    G --> H(Launch debugger: r2 -d)
+    H --> I[Run full analysis: aaaa]
+    I --> J[Locate runtime address of closing brace]
+    
+    J --> K((Set breakpoint))
+    K --> L[Execute until hit]
+    
+    L --> M[(Inspect std::string at rbp-0x240)]
+    M --> N[Extract heap pointer from first 8 bytes]
+    N --> O[Read flag with ps @ heap_address]
+    
+    O --> P(((Flag Retrieved)))
 ```

@@ -148,11 +148,20 @@ Running this script locally reconstructs the exact 36-character key expected by 
 
 ```mermaid
 graph TD
-    A[Static Triage: file / exiftool / strings] --> B[Disassemble entry0 and main via radare2]
-    B --> C[Identify fcn.00001209 as validation routine]
-    C --> D[Recover hardcoded base string via movabs]
-    D --> E[Confirm var_70h as MD5 hash base]
-    E --> F[Recover 8-character index sequence]
-    F --> G[Reconstruct key in Python]
-    G --> H[Flag Retrieved]
+    A[file / exiftool] --> B(Initial Triage)
+    C[strings] --> B
+    
+    B --> D{Disassemble with radare2}
+    D --> E[Identify fcn.00001209 validation routine]
+    
+    E --> F[Recover hardcoded base string]
+    E --> G[Confirm MD5 hash base logic]
+    
+    F --> H[Recover 8-character index sequence]
+    G --> H
+    
+    H --> I[(Write Python Script)]
+    I --> J[Reconstruct key by hashing & slicing]
+    
+    J --> K(((Flag Retrieved)))
 ```
