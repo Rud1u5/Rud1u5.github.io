@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rud1u5.github.io/sitemap.xml

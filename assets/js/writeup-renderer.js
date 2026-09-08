@@ -30,7 +30,7 @@
   }
 
   // 3. Establecer el título de la pestaña dinámicamente
-  document.title = `${machine.title} Writeup // Rud1u5`;
+  document.title = `${machine.title} Writeup • Rud1u5`;
 
   // 4. Renderizar la cabecera dinámica de la máquina
   const headerContainer = document.getElementById('writeup-header-container');
@@ -87,8 +87,8 @@
   if (machine.locked) {
     const isChallenge = machine.type === 'challenge';
     const targetTypeStr = isChallenge ? 'challenge' : 'machine';
-    const flagTypeStr   = isChallenge ? 'challenge flag' : 'root flag';
-    const subtitleText  = `Active ${targetTypeStr} — enter the ${flagTypeStr} to access the writeup. Once retired, it will become public.`;
+    const flagTypeStr = isChallenge ? 'challenge flag' : 'root flag';
+    const subtitleText = `Active ${targetTypeStr} — enter the ${flagTypeStr} to access the writeup. Once retired, it will become public.`;
 
     // ── WRITEUP BLOQUEADO: mostrar pantalla de unlock ──────────
     writeupBody.innerHTML = `
@@ -309,7 +309,7 @@
     if (typeof mermaid !== 'undefined') {
       // 1. Configurar mermaid (tema oscuro)
       mermaid.initialize({ startOnLoad: false, theme: 'dark' });
-      
+
       // 2. Buscar todos los bloques que marked generó como <code class="language-mermaid">
       const mermaidBlocks = container.querySelectorAll('code.language-mermaid');
       if (mermaidBlocks.length === 0) return;
